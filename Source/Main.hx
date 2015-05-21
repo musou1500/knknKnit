@@ -77,7 +77,7 @@ class Main extends Sprite {
 		wave.freq = Math.random() * 0.009 + 0.001;
 		wave.initPhase = (Math.random() + 600 - 300).int();
 		wave.width = this.stage.stageWidth;
-		wave.speed = 0.1 + Math.random() * 0.04;
+		wave.speed = 0.06 + Math.random() * 0.02;
 		wave.thickness = 2.random() + 1;
 		return wave;
 	}

@@ -11,5 +11,4 @@
 	<window antialiasing="3" hardware="false" fullscreen="true"/>
 	<assets path="Assets" rename="assets" exclude="openfl.svg" />
 	<icon path="Assets/openfl.svg" />
-	
 </project>
