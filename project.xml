@@ -5,10 +5,9 @@
 	<app main="Main" path="Export" file="KnknKnit" />
 	
 	<source path="Source" />
-	
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
 	<window antialiasing="3" hardware="false" fullscreen="true"/>
 	<assets path="Assets" rename="assets" exclude="openfl.svg" />
-	<icon path="Assets/openfl.svg" />
+	<icon path="Assets/knknknit.png" />
 </project>

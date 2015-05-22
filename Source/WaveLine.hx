@@ -18,7 +18,7 @@ class WaveLine {
 	public function new() {
 		this.positions = new Array<Float>();
 	}
-	public function draw(g:Graphics) {
+	public function draw(g:Graphics, deltaTime:Int) {
 		if (this.initPhase > this.width) {
 			this.initPhase = this.initPhase - this.width;
 		}
@@ -31,7 +31,7 @@ class WaveLine {
 			g.moveTo(t, y + this.baseY);
 			y = tmp;
 		}
-		this.initPhase += this.speed;
+		this.initPhase += this.speed * deltaTime / 1 / 30;
 	}
 
 	public function getPos(t:Int)

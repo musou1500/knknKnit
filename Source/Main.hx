@@ -5,6 +5,7 @@ import motion.easing.Linear;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.display.Shape;
+import openfl.display.FPS;
 import openfl.events.Event;
 using Std;
 
@@ -14,7 +15,7 @@ class Main extends Sprite {
 	public static var LINE_COLOR = 0x181512;
 	public static var MAIN_COLOR = 0xFCC800;
 	public static var BASE_X = 0;
-	public static var BASE_Y = 200;
+	public static var BASE_Y = 250;
 
 	public var waves:Array<WaveLine>;
 	public var lineShape:Shape;
@@ -38,6 +39,7 @@ class Main extends Sprite {
 
 		this.stage.addChild(colorShape);
 		this.stage.addChild(lineShape);
+		this.stage.addChild(new FPS());
 		this.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		this.stage.addEventListener(Event.RESIZE, onResize);
 		
@@ -54,17 +56,15 @@ class Main extends Sprite {
 	public function onEnterFrame(e:Event)
 	{
 		var timer = Lib.getTimer();
-		if (timer - prevTimer > 1 / 30) 
-		{
-			this.lineShape.graphics.clear();
-			for (wave in this.waves) {
-				wave.draw(this.lineShape.graphics);
-			}
-			this.colorShape.graphics.clear();
-			this.waveColor.draw(this.colorShape.graphics);
-
-			this.prevTimer = timer;
+		var deltaTime = timer - this.prevTimer;
+		this.lineShape.graphics.clear();
+		for (wave in this.waves) {
+			wave.draw(this.lineShape.graphics, deltaTime);
 		}
+		this.colorShape.graphics.clear();
+		this.waveColor.draw(this.colorShape.graphics);
+
+		this.prevTimer = timer;
 	}
 
 
@@ -73,11 +73,11 @@ class Main extends Sprite {
 		var wave = new WaveLine();
 		wave.baseX = Main.BASE_X;
 		wave.baseY = this.stage.stageHeight;
-		wave.amplitude = ((0.1+Math.random()) * 30).int();
-		wave.freq = Math.random() * 0.009 + 0.001;
-		wave.initPhase = (Math.random() + 600 - 300).int();
+		wave.amplitude = (16 + (Math.random() * 30 - 10)).int();
+		wave.freq = 0.003 + Math.random() * 0.003;
+		wave.initPhase = (Math.random() * 800).int();
 		wave.width = this.stage.stageWidth;
-		wave.speed = 0.06 + Math.random() * 0.02;
+		wave.speed = 0.02 + Math.random() * 0.08;
 		wave.thickness = 2.random() + 1;
 		return wave;
 	}
