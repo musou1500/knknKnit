@@ -12,8 +12,9 @@ using Std;
 class Main extends Sprite {
 	
 	public static var LINE_NUM = 4;
-	public static var LINE_COLOR = 0x181512;
-	public static var MAIN_COLOR = 0xFCC800;
+	//public static var LINE_COLOR = 0x181512;
+	public static var LINE_COLOR = 0xFFFFFF;
+	public static var MAIN_COLOR = 0x824320;
 	public static var BASE_X = 0;
 	public static var BASE_Y = 250;
 
@@ -29,6 +30,10 @@ class Main extends Sprite {
 				this.waves = new Array<WaveLine>();
 		for (i in 0...Main.LINE_NUM) {
 			var wave = this.genRundomWave();
+            if (i == 0) {
+                wave.speed = -wave.speed;
+            }
+
 			Actuate.tween (wave, 4, { baseY: Main.BASE_Y }).ease(Linear.easeNone);
 			this.waves.push(wave);
 		}
@@ -73,7 +78,7 @@ class Main extends Sprite {
 		var wave = new WaveLine();
 		wave.baseX = Main.BASE_X;
 		wave.baseY = this.stage.stageHeight;
-		wave.amplitude = (16 + (Math.random() * 30 - 10)).int();
+		wave.amplitude = (16 + (Math.random() * 25 - 10)).int();
 		wave.freq = 0.003 + Math.random() * 0.003;
 		wave.initPhase = (Math.random() * 800).int();
 		wave.width = this.stage.stageWidth;

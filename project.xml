@@ -7,7 +7,7 @@
 	<source path="Source" />
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
-	<window antialiasing="3" hardware="false" fullscreen="true"/>
+	<window antialiasing="3" hardware="false" fullscreen="false" background="#FAB7B1"/>
 	<assets path="Assets" rename="assets" exclude="openfl.svg" />
 	<icon path="Assets/knknknit.png" />
 </project>
